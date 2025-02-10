@@ -174,6 +174,13 @@ compute_sh_bwd_tensor(const uint32_t K, const uint32_t degrees_to_use,
                       at::optional<torch::Tensor> masks, // [...]
                       torch::Tensor &v_colors,           // [..., 3]
                       bool compute_v_dirs);
+torch::Tensor compute_sh_bwd_inplace_tensor(const uint32_t K, const uint32_t degrees_to_use,
+                                            torch::Tensor &dirs,               // [..., 3]
+                                            torch::Tensor &coeffs,             // [..., K, 3]
+                                            torch::Tensor &v_coeffs,             // [..., K, 3]
+                                            at::optional<torch::Tensor> masks, // [...]
+                                            torch::Tensor &v_colors,           // [..., 3]
+                                            bool compute_v_dirs);
 
 /****************************************************************************************
  * Packed Version

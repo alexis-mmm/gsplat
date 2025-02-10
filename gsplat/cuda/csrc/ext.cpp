@@ -4,6 +4,7 @@
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     m.def("compute_sh_fwd", &compute_sh_fwd_tensor);
     m.def("compute_sh_bwd", &compute_sh_bwd_tensor);
+    m.def("compute_sh_bwd_inplace", &compute_sh_bwd_inplace_tensor);
 
     m.def("quat_scale_to_covar_preci_fwd", &quat_scale_to_covar_preci_fwd_tensor);
     m.def("quat_scale_to_covar_preci_bwd", &quat_scale_to_covar_preci_bwd_tensor);

@@ -104,7 +104,7 @@ sh_coeffs_to_color_fast_vjp(const uint32_t degree, // degree of SH to be evaluat
 ) {
     T v_colors_local = v_colors[c];
 
-    v_coeffs[c] = 0.2820947917738781f * v_colors_local;
+    v_coeffs[c] += 0.2820947917738781f * v_colors_local;
     if (degree < 1) {
         return;
     }
@@ -114,9 +114,9 @@ sh_coeffs_to_color_fast_vjp(const uint32_t degree, // degree of SH to be evaluat
     T z = dir.z * inorm;
     T v_x = 0.f, v_y = 0.f, v_z = 0.f;
 
-    v_coeffs[1 * 3 + c] = -0.48860251190292f * y * v_colors_local;
-    v_coeffs[2 * 3 + c] = 0.48860251190292f * z * v_colors_local;
-    v_coeffs[3 * 3 + c] = -0.48860251190292f * x * v_colors_local;
+    v_coeffs[1 * 3 + c] += -0.48860251190292f * y * v_colors_local;
+    v_coeffs[2 * 3 + c] += 0.48860251190292f * z * v_colors_local;
+    v_coeffs[3 * 3 + c] += -0.48860251190292f * x * v_colors_local;
 
     if (v_dir != nullptr) {
         v_x += -0.48860251190292f * coeffs[3 * 3 + c] * v_colors_local;
@@ -145,11 +145,11 @@ sh_coeffs_to_color_fast_vjp(const uint32_t degree, // degree of SH to be evaluat
     T pSH5 = fTmp0B * y;
     T pSH8 = 0.5462742152960395f * fC1;
     T pSH4 = 0.5462742152960395f * fS1;
-    v_coeffs[4 * 3 + c] = pSH4 * v_colors_local;
-    v_coeffs[5 * 3 + c] = pSH5 * v_colors_local;
-    v_coeffs[6 * 3 + c] = pSH6 * v_colors_local;
-    v_coeffs[7 * 3 + c] = pSH7 * v_colors_local;
-    v_coeffs[8 * 3 + c] = pSH8 * v_colors_local;
+    v_coeffs[4 * 3 + c] += pSH4 * v_colors_local;
+    v_coeffs[5 * 3 + c] += pSH5 * v_colors_local;
+    v_coeffs[6 * 3 + c] += pSH6 * v_colors_local;
+    v_coeffs[7 * 3 + c] += pSH7 * v_colors_local;
+    v_coeffs[8 * 3 + c] += pSH8 * v_colors_local;
 
     T fTmp0B_z, fC1_x, fC1_y, fS1_x, fS1_y, pSH6_z, pSH7_x, pSH7_z, pSH5_y, pSH5_z,
         pSH8_x, pSH8_y, pSH4_x, pSH4_y;
@@ -204,13 +204,13 @@ sh_coeffs_to_color_fast_vjp(const uint32_t degree, // degree of SH to be evaluat
     T pSH10 = fTmp1B * fS1;
     T pSH15 = -0.5900435899266435f * fC2;
     T pSH9 = -0.5900435899266435f * fS2;
-    v_coeffs[9 * 3 + c] = pSH9 * v_colors_local;
-    v_coeffs[10 * 3 + c] = pSH10 * v_colors_local;
-    v_coeffs[11 * 3 + c] = pSH11 * v_colors_local;
-    v_coeffs[12 * 3 + c] = pSH12 * v_colors_local;
-    v_coeffs[13 * 3 + c] = pSH13 * v_colors_local;
-    v_coeffs[14 * 3 + c] = pSH14 * v_colors_local;
-    v_coeffs[15 * 3 + c] = pSH15 * v_colors_local;
+    v_coeffs[9 * 3 + c] += pSH9 * v_colors_local;
+    v_coeffs[10 * 3 + c] += pSH10 * v_colors_local;
+    v_coeffs[11 * 3 + c] += pSH11 * v_colors_local;
+    v_coeffs[12 * 3 + c] += pSH12 * v_colors_local;
+    v_coeffs[13 * 3 + c] += pSH13 * v_colors_local;
+    v_coeffs[14 * 3 + c] += pSH14 * v_colors_local;
+    v_coeffs[15 * 3 + c] += pSH15 * v_colors_local;
 
     T fTmp0C_z, fTmp1B_z, fC2_x, fC2_y, fS2_x, fS2_y, pSH12_z, pSH13_x, pSH13_z,
         pSH11_y, pSH11_z, pSH14_x, pSH14_y, pSH14_z, pSH10_x, pSH10_y, pSH10_z, pSH15_x,
@@ -281,15 +281,15 @@ sh_coeffs_to_color_fast_vjp(const uint32_t degree, // degree of SH to be evaluat
     T pSH17 = fTmp2B * fS2;
     T pSH24 = 0.6258357354491763f * fC3;
     T pSH16 = 0.6258357354491763f * fS3;
-    v_coeffs[16 * 3 + c] = pSH16 * v_colors_local;
-    v_coeffs[17 * 3 + c] = pSH17 * v_colors_local;
-    v_coeffs[18 * 3 + c] = pSH18 * v_colors_local;
-    v_coeffs[19 * 3 + c] = pSH19 * v_colors_local;
-    v_coeffs[20 * 3 + c] = pSH20 * v_colors_local;
-    v_coeffs[21 * 3 + c] = pSH21 * v_colors_local;
-    v_coeffs[22 * 3 + c] = pSH22 * v_colors_local;
-    v_coeffs[23 * 3 + c] = pSH23 * v_colors_local;
-    v_coeffs[24 * 3 + c] = pSH24 * v_colors_local;
+    v_coeffs[16 * 3 + c] += pSH16 * v_colors_local;
+    v_coeffs[17 * 3 + c] += pSH17 * v_colors_local;
+    v_coeffs[18 * 3 + c] += pSH18 * v_colors_local;
+    v_coeffs[19 * 3 + c] += pSH19 * v_colors_local;
+    v_coeffs[20 * 3 + c] += pSH20 * v_colors_local;
+    v_coeffs[21 * 3 + c] += pSH21 * v_colors_local;
+    v_coeffs[22 * 3 + c] += pSH22 * v_colors_local;
+    v_coeffs[23 * 3 + c] += pSH23 * v_colors_local;
+    v_coeffs[24 * 3 + c] += pSH24 * v_colors_local;
 
     T fTmp0D_z, fTmp1C_z, fTmp2B_z, fC3_x, fC3_y, fS3_x, fS3_y, pSH20_z, pSH21_x,
         pSH21_z, pSH19_y, pSH19_z, pSH22_x, pSH22_y, pSH22_z, pSH18_x, pSH18_y, pSH18_z,

@@ -10,6 +10,7 @@ from .cuda._wrapper import (
     rasterize_to_indices_in_range,
     rasterize_to_pixels,
     spherical_harmonics,
+    spherical_harmonics_bwd_inplace,
     world_to_cam,
 )
 from .rendering import (
@@ -102,6 +103,7 @@ all = [
     "rasterization_legacy_wrapper",
     "rasterization_inria_wrapper",
     "spherical_harmonics",
+    "spherical_harmonics_bwd_inplace",
     "isect_offset_encode",
     "isect_tiles",
     "persp_proj",

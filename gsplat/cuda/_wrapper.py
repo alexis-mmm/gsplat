@@ -14,6 +14,30 @@ def _make_lazy_cuda_func(name: str) -> Callable:
     return call_cuda
 
 
+@torch.no_grad()
+def spherical_harmonics_bwd_inplace(
+    degrees_to_use: int,
+    dirs: Tensor,
+    coeffs: Tensor,
+    v_coeffs: Tensor,
+    v_colors: Tensor,
+    masks: Optional[Tensor] = None,
+) -> Tensor:
+
+    num_bases = coeffs.shape[-2]
+    v_dirs = _make_lazy_cuda_func("compute_sh_bwd_inplace")(
+        num_bases,
+        degrees_to_use,
+        dirs,
+        coeffs,
+        v_coeffs,
+        masks,
+        v_colors,
+        True,
+    )
+    return v_dirs
+
+
 def spherical_harmonics(
     degrees_to_use: int,
     dirs: Tensor,  # [..., 3]
