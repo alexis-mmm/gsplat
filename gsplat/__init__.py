@@ -12,6 +12,7 @@ from .cuda._wrapper import (
     spherical_harmonics,
     spherical_harmonics_bwd_inplace,
     world_to_cam,
+    selective_adam_update,
 )
 from .rendering import (
     rasterization,
@@ -99,6 +100,7 @@ def get_tile_bin_edges(*args, **kwargs):
 
 
 all = [
+    "selective_adam_update",
     "rasterization",
     "rasterization_legacy_wrapper",
     "rasterization_inria_wrapper",
